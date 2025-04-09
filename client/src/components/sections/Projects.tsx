@@ -78,14 +78,14 @@ export default function Projects() {
           transition={{ type: "spring", stiffness: 100, damping: 15 }}
         >
           <div className="inline-block mb-6">
-            <span className="text-sm font-medium text-primary-600 dark:text-secondary-400 py-1 px-3 bg-primary-600/10 dark:bg-secondary-400/10 rounded-full">MY WORK</span>
+            <span className="text-sm font-medium text-white py-1 px-3 bg-white/20 backdrop-blur-sm rounded-full border border-white/20">MY WORK</span>
           </div>
           
-          <h2 className="text-4xl font-montserrat font-bold mb-4 text-gray-800 dark:text-white">
+          <h2 className="text-4xl font-montserrat font-bold mb-4 text-white">
             Featured <span className="gradient-text">Projects</span>
           </h2>
           
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
+          <p className="text-white/80 max-w-2xl mx-auto mb-8">
             A showcase of my most significant work, demonstrating my approach to problem-solving and creating engaging user experiences.
           </p>
           
@@ -100,8 +100,8 @@ export default function Projects() {
                 key={filter.id}
                 className={`project-filter py-2 px-6 rounded-full font-medium transition ${
                   activeFilter === filter.id 
-                    ? "bg-primary-600 text-white dark:bg-secondary-500 dark:text-dark-900" 
-                    : "bg-gray-200 dark:bg-dark-900 text-gray-700 dark:text-gray-300 hover:bg-primary-600 hover:text-white dark:hover:bg-secondary-500 dark:hover:text-dark-900"
+                    ? "bg-white/30 text-white border border-white/30" 
+                    : "bg-white/10 text-white border border-white/20 hover:bg-white/20"
                 }`}
                 onClick={() => setActiveFilter(filter.id)}
                 whileHover={{ y: -3 }}
@@ -122,7 +122,7 @@ export default function Projects() {
               {filteredProjects.map(project => (
                 <motion.div
                   key={project.id}
-                  className="project-card group bg-white dark:bg-dark-900 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all"
+                  className="project-card group bg-white/20 backdrop-blur-sm rounded-xl overflow-hidden shadow-md hover:shadow-xl border border-white/30 transition-all"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 30 }}
@@ -140,7 +140,7 @@ export default function Projects() {
                     />
                     
                     <motion.div 
-                      className="absolute inset-0 bg-primary-600/80 dark:bg-secondary-500/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="absolute inset-0 bg-gradient-to-r from-purple-600/80 to-indigo-600/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                       initial={{ opacity: 0 }}
                       whileHover={{ opacity: 1 }}
                     >
@@ -149,11 +149,11 @@ export default function Projects() {
                           href={project.links.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="bg-white dark:bg-dark-900 text-primary-600 dark:text-secondary-500 w-12 h-12 rounded-full flex items-center justify-center mx-2 hover:bg-gray-100 dark:hover:bg-dark-800 transition-colors"
-                          whileHover={{ y: -5 }}
-                          whileTap={{ y: 0 }}
+                          className="bg-white w-12 h-12 rounded-full flex items-center justify-center mx-2 hover:bg-purple-100 text-purple-600 transition-all"
+                          whileHover={{ y: -5, scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
                         >
-                          <i className="fas fa-link"></i>
+                          <i className="fas fa-external-link-alt text-lg"></i>
                         </motion.a>
                       )}
                       
@@ -162,11 +162,11 @@ export default function Projects() {
                           href={project.links.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="bg-white dark:bg-dark-900 text-primary-600 dark:text-secondary-500 w-12 h-12 rounded-full flex items-center justify-center mx-2 hover:bg-gray-100 dark:hover:bg-dark-800 transition-colors"
-                          whileHover={{ y: -5 }}
-                          whileTap={{ y: 0 }}
+                          className="bg-white w-12 h-12 rounded-full flex items-center justify-center mx-2 hover:bg-purple-100 text-purple-600 transition-all"
+                          whileHover={{ y: -5, scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
                         >
-                          <i className="fab fa-github"></i>
+                          <i className="fab fa-github text-lg"></i>
                         </motion.a>
                       )}
                     </motion.div>
@@ -174,13 +174,13 @@ export default function Projects() {
                   
                   <div className="p-6">
                     <div className="flex justify-between items-center mb-3">
-                      <h3 className="font-montserrat font-bold text-xl text-gray-800 dark:text-white">{project.title}</h3>
-                      <span className="text-xs font-medium text-primary-600 dark:text-secondary-400 py-1 px-2 bg-primary-600/10 dark:bg-secondary-400/10 rounded-full">
+                      <h3 className="font-montserrat font-bold text-xl text-white">{project.title}</h3>
+                      <span className="text-xs font-medium text-white py-1 px-2 bg-white/20 rounded-full">
                         {filters.find(f => f.id === project.category)?.label}
                       </span>
                     </div>
                     
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">
+                    <p className="text-white/80 mb-4">
                       {project.description}
                     </p>
                     
@@ -188,7 +188,7 @@ export default function Projects() {
                       {project.tags.map((tag, index) => (
                         <span 
                           key={index}
-                          className="text-xs py-1 px-2 bg-gray-200 dark:bg-dark-800 text-gray-700 dark:text-gray-300 rounded-full"
+                          className="text-xs py-1 px-2 bg-white/10 text-white rounded-full border border-white/10"
                         >
                           {tag}
                         </span>
@@ -211,7 +211,7 @@ export default function Projects() {
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block py-3 px-8 rounded-full border-2 border-primary-600 dark:border-secondary-500 text-primary-600 dark:text-secondary-500 font-medium hover:bg-primary-600 hover:text-white dark:hover:bg-secondary-500 dark:hover:text-dark-900 transition"
+            className="inline-block py-3 px-8 rounded-full border-2 border-white/30 text-white font-medium hover:bg-white/20 transition-all"
             whileHover={{ 
               scale: 1.05,
               boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)"
