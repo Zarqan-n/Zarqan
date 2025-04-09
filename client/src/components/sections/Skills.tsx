@@ -1,13 +1,18 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Suspense } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Skill, Tool } from "@/types";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import { RotatingSkillCubes } from "@/components/3d/InteractiveScene";
+import SkillsVisualization from "@/components/3d/SkillsVisualization";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
   const entry = useIntersectionObserver(sectionRef, {});
   const isVisible = !!entry?.isIntersecting;
+  const isMobile = useIsMobile();
+  const [use3D, setUse3D] = useState(false); // Disabled for compatibility
   
   // Frontend skills data
   const frontendSkills: Skill[] = [
@@ -15,6 +20,18 @@ export default function Skills() {
     { name: "JavaScript / TypeScript", percentage: 90 },
     { name: "Tailwind CSS / SCSS", percentage: 85 },
     { name: "HTML5 / CSS3", percentage: 95 }
+  ];
+  
+  // Skills for 3D visualization
+  const visualSkills: Skill[] = [
+    { name: "React", percentage: 95 },
+    { name: "TypeScript", percentage: 90 },
+    { name: "Three.js", percentage: 82 },
+    { name: "Tailwind CSS", percentage: 88 },
+    { name: "Node.js", percentage: 80 },
+    { name: "WebGL", percentage: 75 },
+    { name: "UI/UX Design", percentage: 85 },
+    { name: "Animation", percentage: 92 }
   ];
   
   // Creative tools data
@@ -32,7 +49,15 @@ export default function Skills() {
     if (isVisible && !animated) {
       setAnimated(true);
     }
-  }, [isVisible, animated]);
+    
+    // 3D features are currently disabled due to compatibility issues
+    const checkDevicePerformance = () => {
+      // Keep 3D disabled for now until compatibility issues are fixed
+      setUse3D(false);
+    };
+    
+    checkDevicePerformance();
+  }, [isVisible, animated, isMobile]);
 
   return (
     <section 
@@ -134,6 +159,60 @@ export default function Skills() {
             </div>
           </motion.div>
         </div>
+        
+        {/* 3D Skills Visualization */}
+        {isVisible && use3D && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.6 }}
+            className="mt-20"
+          >
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-montserrat font-bold text-white mb-3">
+                Interactive Skills Visualization
+              </h3>
+              <p className="text-white/80 max-w-2xl mx-auto mb-6">
+                Explore my skills in an interactive 3D environment. Click on any skill sphere to see more details.
+              </p>
+            </div>
+            
+            <Suspense fallback={
+              <div className="w-full h-[300px] flex items-center justify-center">
+                <p className="text-white/80">Loading 3D visualization...</p>
+              </div>
+            }>
+              <SkillsVisualization skills={visualSkills} />
+            </Suspense>
+          </motion.div>
+        )}
+        
+        {/* Rotating Skill Cubes - Simpler 3D visualization that works on more devices */}
+        {isVisible && !use3D && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.6 }}
+            className="mt-20"
+          >
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-montserrat font-bold text-white mb-3">
+                Core Technologies
+              </h3>
+              <p className="text-white/80 max-w-2xl mx-auto mb-6">
+                My primary technology stack and areas of expertise
+              </p>
+            </div>
+            
+            <Suspense fallback={
+              <div className="w-full h-[200px] flex items-center justify-center">
+                <p className="text-white/80">Loading visualization...</p>
+              </div>
+            }>
+              <RotatingSkillCubes />
+            </Suspense>
+          </motion.div>
+        )}
       </div>
     </section>
   );
