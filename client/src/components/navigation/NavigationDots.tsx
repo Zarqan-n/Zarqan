@@ -5,7 +5,7 @@ interface NavigationDotsProps {
 }
 
 export default function NavigationDots({ activeSection }: NavigationDotsProps) {
-  const sections = ["hero", "about", "skills", "projects", "contact"];
+  const sections = ["hero", "about", "skills", "projects", "recent-projects", "contact"];
 
   return (
     <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-30 hidden md:block">
