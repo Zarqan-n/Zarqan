@@ -37,7 +37,7 @@ export default function Skills() {
     <section 
       id="skills" 
       ref={sectionRef}
-      className="py-20 md:py-32 relative"
+      className="py-20 md:py-32 relative skills-section"
     >
       <motion.div 
         className="absolute inset-0 bg-primary-600/5 dark:bg-secondary-400/5 skew-y-3 z-0"

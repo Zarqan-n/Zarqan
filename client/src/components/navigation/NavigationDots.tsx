@@ -18,7 +18,7 @@ export default function NavigationDots({ activeSection }: NavigationDotsProps) {
               activeSection === section 
                 ? "opacity-100" 
                 : "opacity-50 hover:opacity-100"
-            } bg-primary-500 dark:bg-secondary-400`}
+            } bg-purple-300`}
             onClick={(e) => {
               e.preventDefault();
               document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });

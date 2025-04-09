@@ -14,10 +14,10 @@ export default function DesktopNav() {
 
   return (
     <motion.nav 
-      className="fixed top-0 left-0 w-full bg-white/80 dark:bg-dark-900/80 backdrop-blur-md z-40 transition-all duration-300 hidden md:block"
+      className="fixed top-0 left-0 w-full bg-purple-900/80 backdrop-blur-md z-40 transition-all duration-300 hidden md:block"
       animate={{
         height: isScrolled ? 70 : 80,
-        boxShadow: isScrolled ? "0 4px 6px -1px rgba(0, 0, 0, 0.1)" : "none"
+        boxShadow: isScrolled ? "0 4px 15px -1px rgba(91, 33, 182, 0.3)" : "none"
       }}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -31,7 +31,7 @@ export default function DesktopNav() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <span className="gradient-text">Alex Parker</span>
+          <span className="gradient-text">Zarqan</span>
         </motion.a>
         
         <div className="flex space-x-8">
@@ -39,7 +39,7 @@ export default function DesktopNav() {
             <motion.a
               key={section}
               href={`#${section}`}
-              className="nav-link relative font-medium text-gray-800 dark:text-white hover:text-primary-600 dark:hover:text-secondary-400 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary-600 dark:after:bg-secondary-400 after:transition-all hover:after:w-full"
+              className="nav-link relative font-medium text-white hover:text-purple-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-300 after:transition-all hover:after:w-full"
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
               onClick={(e) => {

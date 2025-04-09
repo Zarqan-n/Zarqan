@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import DesktopNav from "@/components/navigation/DesktopNav";
 import MobileNav from "@/components/navigation/MobileNav";
 import NavigationDots from "@/components/navigation/NavigationDots";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
 import ParticleBackground from "@/components/ParticleBackground";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
@@ -59,10 +58,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen font-inter bg-white dark:bg-dark-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <div className="relative min-h-screen font-inter gradient-bg text-gray-800 transition-colors duration-300">
       <ParticleBackground />
       
-      <ThemeSwitcher />
       <NavigationDots activeSection={activeSection} />
       <DesktopNav />
       <MobileNav />

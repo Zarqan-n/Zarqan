@@ -68,7 +68,7 @@ export default function Projects() {
     <section 
       id="projects" 
       ref={sectionRef}
-      className="py-20 md:py-32 bg-gray-50 dark:bg-dark-800 relative"
+      className="py-20 md:py-32 projects-section relative"
     >
       <div className="container mx-auto px-6">
         <motion.div 

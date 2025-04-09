@@ -44,7 +44,7 @@ export default function MobileNav() {
     <div className="fixed top-6 left-6 z-50 md:hidden">
       <motion.button 
         id="menu-toggle" 
-        className="text-gray-800 dark:text-white focus:outline-none"
+        className="text-white focus:outline-none"
         onClick={toggleMenu}
         whileTap={{ scale: 0.9 }}
       >
@@ -55,7 +55,7 @@ export default function MobileNav() {
         {isOpen && (
           <motion.div 
             id="mobile-menu" 
-            className="fixed inset-0 bg-white dark:bg-dark-900 z-50 flex flex-col items-center justify-center space-y-8"
+            className="fixed inset-0 bg-purple-900 bg-gradient-to-br from-purple-900 to-indigo-900 z-50 flex flex-col items-center justify-center space-y-8"
             initial="closed"
             animate="open"
             exit="closed"
@@ -63,7 +63,7 @@ export default function MobileNav() {
           >
             <motion.button 
               id="close-menu" 
-              className="absolute top-6 right-6 text-gray-800 dark:text-white focus:outline-none"
+              className="absolute top-6 right-6 text-white focus:outline-none"
               onClick={toggleMenu}
               whileTap={{ scale: 0.9 }}
             >
@@ -76,8 +76,8 @@ export default function MobileNav() {
                 href={item.href}
                 className={`text-2xl font-montserrat font-bold ${
                   index === 0 
-                    ? "text-primary-600 dark:text-secondary-400 hover:underline" 
-                    : "text-gray-800 dark:text-white hover:text-primary-600 dark:hover:text-secondary-400"
+                    ? "text-purple-300 hover:text-white" 
+                    : "text-white hover:text-purple-300"
                 }`}
                 variants={itemVariants}
                 whileHover={{ scale: 1.1 }}
@@ -91,6 +91,12 @@ export default function MobileNav() {
                 {item.name}
               </motion.a>
             ))}
+            <motion.div
+              variants={itemVariants}
+              className="absolute bottom-10 left-0 right-0 mx-auto text-center text-white opacity-70"
+            >
+              <span className="gradient-text text-lg font-bold">Zarqan</span>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -5,7 +5,6 @@ import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import AnimatedCursor from "./components/AnimatedCursor";
-import { ThemeProvider } from "./components/ThemeProvider";
 
 function Router() {
   return (
@@ -18,14 +17,15 @@ function Router() {
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="light">
-      <QueryClientProvider client={queryClient}>
-        <AnimatedCursor />
-        <Router />
-        <Toaster />
-      </QueryClientProvider>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <AnimatedCursor />
+      <Router />
+      <Toaster />
+    </QueryClientProvider>
   );
 }
+
+// Apply the light theme to the document root
+document.documentElement.classList.add('light');
 
 export default App;

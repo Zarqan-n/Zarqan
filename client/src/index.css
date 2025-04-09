@@ -11,25 +11,23 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased;
     scroll-behavior: smooth;
+    color: #f8fafc;
+    background: linear-gradient(135deg, #4a1c93 0%, #7436df 100%);
   }
 
-  .dark {
-    --gradient-start: rgba(109, 40, 217, 0.7);
-    --gradient-end: rgba(139, 92, 246, 0.8);
-  }
-
-  .light {
-    --gradient-start: rgba(124, 58, 237, 0.7);
-    --gradient-end: rgba(79, 70, 229, 0.8);
+  :root {
+    --color-primary: 138, 58, 255;
+    --color-secondary: 79, 70, 229;
+    --color-accent: 124, 58, 237;
   }
 }
 
 /* Custom Gradients and Effects */
 .gradient-text {
   @apply font-bold;
-  background: linear-gradient(90deg, #8a3aff 0%, #4f46e5 100%);
+  background: linear-gradient(90deg, #a855f7 0%, #6366f1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -37,11 +35,12 @@
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  background: linear-gradient(135deg, rgba(74, 28, 147, 0.95) 0%, rgba(116, 54, 223, 0.95) 100%);
 }
 
 .text-typing {
   @apply font-semibold;
+  color: #c4b5fd;
 }
 
 /* Card & section styling */
@@ -77,24 +76,18 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 15px 0 rgba(138, 58, 255, 0.3); }
-  50% { box-shadow: 0 0 25px 5px rgba(138, 58, 255, 0.5); }
+  0%, 100% { box-shadow: 0 0 15px 0 rgba(168, 85, 247, 0.4); }
+  50% { box-shadow: 0 0 25px 5px rgba(168, 85, 247, 0.6); }
 }
 
 .pulse-glow {
   animation: pulse-glow 3s ease-in-out infinite;
 }
 
-/* Dark mode enhancements */
-.dark .gradient-text {
-  background: linear-gradient(90deg, #9333ea 0%, #3b82f6 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
 /* Layout elements */
 .section-with-angled-bg {
   position: relative;
+  background-color: rgba(91, 33, 182, 0.6);
 }
 
 .section-with-angled-bg::before {
@@ -104,13 +97,35 @@
   left: 0;
   right: 0;
   height: 100%;
-  background: linear-gradient(135deg, rgba(138, 58, 255, 0.05) 0%, rgba(79, 70, 229, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(99, 102, 241, 0.2) 100%);
   transform: skewY(-3deg);
   transform-origin: top left;
   z-index: -1;
 }
 
-/* Dark mode angled background */
-.dark .section-with-angled-bg::before {
-  background: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(59, 130, 246, 0.15) 100%);
+/* Section backgrounds */
+.projects-section {
+  background: linear-gradient(135deg, rgba(70, 27, 128, 0.8) 0%, rgba(112, 26, 188, 0.8) 100%);
+}
+
+.skills-section {
+  background: linear-gradient(135deg, rgba(76, 29, 149, 0.8) 0%, rgba(91, 33, 182, 0.8) 100%);
+}
+
+.contact-section {
+  background: linear-gradient(135deg, rgba(109, 40, 217, 0.85) 0%, rgba(139, 92, 246, 0.85) 100%);
+}
+
+/* Card styles */
+.card {
+  @apply bg-white/10 backdrop-blur-sm rounded-xl shadow-lg border border-white/20;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-8 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all;
+}
+
+.btn-secondary {
+  @apply bg-white/20 backdrop-blur-sm hover:bg-purple-600 text-white font-medium py-3 px-8 rounded-xl flex items-center justify-center shadow-md hover:shadow-lg border border-white/30 transition-all;
 }

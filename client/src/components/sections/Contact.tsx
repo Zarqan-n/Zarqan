@@ -37,7 +37,7 @@ export default function Contact() {
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
-        variant: "success"
+        variant: "default"
       });
       form.reset();
     },
@@ -58,7 +58,7 @@ export default function Contact() {
     <section 
       id="contact" 
       ref={sectionRef}
-      className="py-20 md:py-32 relative"
+      className="py-20 md:py-32 contact-section relative"
     >
       <motion.div 
         className="absolute inset-0 bg-primary-600/5 dark:bg-secondary-400/5 -skew-y-3 z-0"
@@ -211,8 +211,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-montserrat font-bold text-gray-800 dark:text-white mb-1">Email</h4>
-                  <a href="mailto:hello@alexparker.dev" className="text-primary-600 dark:text-secondary-400 hover:underline">
-                    hello@alexparker.dev
+                  <a href="mailto:hello@zarqan.dev" className="text-purple-300 hover:underline">
+                    hello@zarqan.dev
                   </a>
                 </div>
               </motion.div>

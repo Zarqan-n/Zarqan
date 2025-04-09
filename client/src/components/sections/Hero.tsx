@@ -141,7 +141,6 @@ export default function Hero() {
             variants={itemVariants}
           >
             <span className="gradient-text">Zarqan</span>
-            <span className="text-3xl ml-2 opacity-75">(Zarqu)</span>
           </motion.h1>
           
           <motion.h2 
