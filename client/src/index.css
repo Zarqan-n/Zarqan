@@ -5,6 +5,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Interactive Project Showcase Styles */
+.parallax-card {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  will-change: transform;
+}
+
+.parallax-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.parallax-card:hover::before {
+  opacity: 1;
+}
+
 @layer base {
   * {
     @apply border-border;

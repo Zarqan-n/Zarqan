@@ -1,8 +1,9 @@
 import { useRef, useState, useEffect } from "react";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { motion } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Project } from "@/types";
+import ProjectShowcase from "@/components/interactive/ProjectShowcase";
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -10,21 +11,8 @@ export default function Projects() {
   const isVisible = !!entry?.isIntersecting;
   const isMobile = useIsMobile();
   
-  // State for active filter and 3D gallery view
-  const [activeFilter, setActiveFilter] = useState<string>("all");
-  const [showGallery, setShowGallery] = useState(false);
-  const [use3D, setUse3D] = useState(true);
-  
-  // Check for device capabilities
-  useEffect(() => {
-    // 3D features are currently disabled due to compatibility issues
-    const checkDevicePerformance = () => {
-      // Keep 3D disabled for now until compatibility issues are fixed
-      setUse3D(false);
-    };
-    
-    checkDevicePerformance();
-  }, [isMobile]);
+  // State for view toggle (interactive vs classic)
+  const [useInteractive, setUseInteractive] = useState(true);
   
   // Projects data
   const projects: Project[] = [
@@ -63,27 +51,50 @@ export default function Projects() {
         demo: "https://example.com/story",
         github: "https://github.com/example/story"
       }
+    },
+    {
+      id: 4,
+      title: "AI Learning Platform",
+      description: "Educational platform using AI to personalize learning paths and provide adaptive content for students.",
+      category: "web",
+      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1365&q=80",
+      tags: ["Machine Learning", "React", "Node.js"],
+      links: {
+        demo: "https://example.com/ai-learning",
+        github: "https://github.com/example/ai-learning"
+      }
+    },
+    {
+      id: 5,
+      title: "Brand Identity System",
+      description: "Comprehensive design system for a global brand featuring logo variations, typography, color schemes and templates.",
+      category: "ui",
+      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80",
+      tags: ["Adobe Creative Suite", "Typography", "Branding"],
+      links: {
+        demo: "https://example.com/brand-system",
+        github: "https://github.com/example/brand-system"
+      }
+    },
+    {
+      id: 6,
+      title: "Motion Graphics Promo",
+      description: "Captivating motion graphics package for product launch campaign, including animated logo reveals and social media assets.",
+      category: "animation",
+      image: "https://images.unsplash.com/photo-1622737133809-d95047b9e673?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80",
+      tags: ["After Effects", "Cinema 4D", "Motion Design"],
+      links: {
+        demo: "https://example.com/motion-promo",
+        github: "https://github.com/example/motion-promo"
+      }
     }
   ];
-  
-  // Filter categories
-  const filters = [
-    { id: "all", label: "All" },
-    { id: "web", label: "Web Development" },
-    { id: "ui", label: "UI/UX Design" },
-    { id: "animation", label: "Animation" }
-  ];
-  
-  // Filtered projects based on active filter
-  const filteredProjects = activeFilter === "all" 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
 
   return (
     <section 
       id="projects" 
       ref={sectionRef}
-      className="py-20 md:py-32 projects-section relative"
+      className="py-20 md:py-32 projects-section relative overflow-x-hidden"
     >
       <div className="container mx-auto px-6">
         <motion.div 
@@ -104,48 +115,67 @@ export default function Projects() {
             A showcase of my most significant work, demonstrating my approach to problem-solving and creating engaging user experiences.
           </p>
           
-          <motion.div 
-            className="flex flex-wrap justify-center mb-6 gap-3"
+          {/* View mode toggle */}
+          <motion.div
+            className="flex justify-center mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.1 }}
           >
-            {filters.map(filter => (
-              <motion.button
-                key={filter.id}
-                className={`project-filter py-2 px-6 rounded-full font-medium transition ${
-                  activeFilter === filter.id 
-                    ? "bg-white/30 text-white border border-white/30" 
-                    : "bg-white/10 text-white border border-white/20 hover:bg-white/20"
+            <div className="inline-flex rounded-full border-2 border-white/30 p-1 bg-white/10 backdrop-blur-sm">
+              <button
+                onClick={() => setUseInteractive(true)}
+                className={`py-2 px-4 rounded-full transition-all ${
+                  useInteractive 
+                    ? "bg-white/20 text-white"
+                    : "text-white/70 hover:bg-white/10"
                 }`}
-                onClick={() => setActiveFilter(filter.id)}
-                whileHover={{ y: -3 }}
-                whileTap={{ y: 0 }}
               >
-                {filter.label}
-              </motion.button>
-            ))}
+                <span className="flex items-center">
+                  <i className="fas fa-cube mr-2"></i> Interactive
+                </span>
+              </button>
+              <button
+                onClick={() => setUseInteractive(false)}
+                className={`py-2 px-4 rounded-full transition-all ${
+                  !useInteractive 
+                    ? "bg-white/20 text-white"
+                    : "text-white/70 hover:bg-white/10"
+                }`}
+              >
+                <span className="flex items-center">
+                  <i className="fas fa-th mr-2"></i> Classic
+                </span>
+              </button>
+            </div>
           </motion.div>
-          
-          {/* View Toggle: 3D Gallery vs Regular (disabled) */}
         </motion.div>
         
-        {/* Regular grid view */}
-        <LayoutGroup>
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            layout
-          >
-            <AnimatePresence>
-              {filteredProjects.map(project => (
+        {/* Project Showcase with toggle between Interactive and Classic views */}
+        {useInteractive ? (
+          <ProjectShowcase projects={projects} isVisible={isVisible} />
+        ) : (
+          <div>
+            {/* Classic grid view */}
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {projects.map(project => (
                 <motion.div
                   key={project.id}
                   className="project-card group bg-white/20 backdrop-blur-sm rounded-xl overflow-hidden shadow-md hover:shadow-xl border border-white/30 transition-all"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 30 }}
-                  transition={{ type: "spring", stiffness: 100, damping: 15 }}
-                  layout
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 100, 
+                    damping: 15,
+                    delay: (project.id % 3) * 0.1
+                  }}
                   whileHover={{ y: -10 }}
                 >
                   <div className="relative overflow-hidden">
@@ -194,7 +224,7 @@ export default function Projects() {
                     <div className="flex justify-between items-center mb-3">
                       <h3 className="font-montserrat font-bold text-xl text-white">{project.title}</h3>
                       <span className="text-xs font-medium text-white py-1 px-2 bg-white/20 rounded-full">
-                        {filters.find(f => f.id === project.category)?.label}
+                        {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
                       </span>
                     </div>
                     
@@ -215,34 +245,61 @@ export default function Projects() {
                   </div>
                 </motion.div>
               ))}
-            </AnimatePresence>
-          </motion.div>
-        </LayoutGroup>
-
-        {/* 3D Project Gallery View (disabled) */}
-        
-        <motion.div 
-          className="mt-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ delay: 0.4 }}
-        >
-          <motion.a 
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block py-3 px-8 rounded-full border-2 border-white/30 text-white font-medium hover:bg-white/20 transition-all"
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)"
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            View All Projects
-            <i className="fas fa-arrow-right ml-2"></i>
-          </motion.a>
-        </motion.div>
+            </motion.div>
+            
+            <motion.div 
+              className="mt-12 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.4 }}
+            >
+              <motion.a 
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block py-3 px-8 rounded-full border-2 border-white/30 text-white font-medium hover:bg-white/20 transition-all"
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)"
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                View All Projects
+                <i className="fas fa-arrow-right ml-2"></i>
+              </motion.a>
+            </motion.div>
+          </div>
+        )}
       </div>
+      
+      {/* Decorative elements */}
+      <motion.div 
+        className="absolute top-20 left-0 w-64 h-64 bg-purple-600/20 rounded-full filter blur-3xl"
+        animate={{
+          x: [0, 50, 0],
+          y: [0, 30, 0],
+          opacity: [0.2, 0.3, 0.2]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          repeatType: "reverse"
+        }}
+      />
+      
+      <motion.div 
+        className="absolute bottom-20 right-0 w-80 h-80 bg-indigo-600/20 rounded-full filter blur-3xl"
+        animate={{
+          x: [0, -30, 0],
+          y: [0, 40, 0],
+          opacity: [0.2, 0.3, 0.2]
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          repeatType: "reverse"
+        }}
+      />
     </section>
   );
 }
