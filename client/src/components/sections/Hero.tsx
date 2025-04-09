@@ -126,35 +126,32 @@ export default function Hero() {
             className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 pulse-glow"
             variants={itemVariants}
           >
-            <span className="text-purple-800 dark:text-purple-300 font-medium">Welcome to my portfolio</span>
+            <span className="text-white font-medium">Welcome to my portfolio</span>
           </motion.div>
           
           <motion.p 
-            className="text-purple-900 dark:text-purple-200 text-xl font-medium mb-4"
+            className="text-white text-xl font-medium mb-4"
             variants={itemVariants}
           >
             Hello, I'm
           </motion.p>
           
           <motion.h1 
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 flex items-center justify-center md:justify-start"
+            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
             variants={itemVariants}
           >
-            <div className="mr-4 bg-white/30 w-16 h-16 rounded-lg flex items-center justify-center backdrop-blur-sm border border-white/30 shadow-lg">
-              <span className="text-4xl text-purple-500 font-bold">Z</span>
-            </div>
             <span className="gradient-text">Zarqan</span>
           </motion.h1>
           
           <motion.h2 
-            className="text-3xl md:text-4xl font-semibold mb-8 text-gray-800 dark:text-gray-100"
+            className="text-3xl md:text-4xl font-semibold mb-8 text-white"
             variants={itemVariants}
           >
             Passionate
             <span className="relative">
-              <span className="text-typing ml-2 text-purple-700 dark:text-purple-300">{typingText}</span>
+              <span className="text-typing ml-2 text-white">{typingText}</span>
               <motion.span 
-                className="absolute -right-2 top-0 h-full w-1 bg-purple-700 dark:bg-purple-300"
+                className="absolute -right-2 top-0 h-full w-1 bg-white"
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ repeat: Infinity, duration: 1 }}
               />
@@ -162,7 +159,7 @@ export default function Hero() {
           </motion.h2>
           
           <motion.p 
-            className="text-lg text-gray-700 dark:text-gray-300 mb-10 max-w-lg"
+            className="text-lg text-white mb-10 max-w-lg"
             variants={itemVariants}
           >
             I create stunning digital experiences that combine artistic vision with technical excellence, transforming concepts into captivating interactive realities.
