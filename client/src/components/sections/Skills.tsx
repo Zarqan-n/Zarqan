@@ -187,10 +187,80 @@ export default function Skills() {
                   transition={{ delay: 0.2 + index * 0.1 }}
                   whileHover={{ y: -5, scale: 1.05 }}
                 >
-                  <div className="w-16 h-16 flex items-center justify-center mb-3 bg-gradient-to-br from-white/20 to-purple-500/30 rounded-full">
-                    <span className="text-white font-bold text-xl">{skill.percentage}%</span>
+                  <div className="w-16 h-16 flex items-center justify-center mb-3 bg-gradient-to-br from-white/20 to-purple-500/30 rounded-full overflow-hidden relative">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5, y: 10 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      transition={{ 
+                        duration: 0.8, 
+                        delay: 0.4 + index * 0.1, 
+                        type: "spring",
+                        stiffness: 100
+                      }}
+                    >
+                      <AnimatedCounter 
+                        end={skill.percentage} 
+                        suffix="%" 
+                        delay={0.6 + index * 0.15}
+                        className="text-white font-bold text-xl"
+                      />
+                    </motion.div>
+                    
+                    {/* Background circular track */}
+                    <div className="absolute inset-0 border-2 border-white/20 rounded-full" />
+                    
+                    {/* Animated circular progress */}
+                    <svg className="absolute inset-0 w-full h-full -rotate-90">
+                      <motion.circle 
+                        cx="50%" 
+                        cy="50%" 
+                        r="47%" 
+                        fill="none"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeDasharray="300"
+                        initial={{ strokeDashoffset: 300 }}
+                        animate={{ 
+                          strokeDashoffset: 300 - (300 * skill.percentage / 100),
+                        }}
+                        transition={{ 
+                          duration: 1.5, 
+                          delay: 0.5 + index * 0.1, 
+                          ease: "easeOut" 
+                        }}
+                        className="origin-center drop-shadow-glow" 
+                      />
+                    </svg>
+                    
+                    {/* Subtle pulsing glow effect */}
+                    <motion.div 
+                      className="absolute inset-0 bg-purple-500/10 rounded-full"
+                      animate={{ 
+                        scale: [1, 1.05, 1],
+                        opacity: [0.2, 0.5, 0.2] 
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: "reverse"
+                      }}
+                    />
                   </div>
-                  <h4 className="font-medium text-white text-center">{skill.name}</h4>
+                  <motion.h4 
+                    className="font-medium text-white text-center relative"
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 + index * 0.1 }}
+                  >
+                    {skill.name}
+                    <motion.div 
+                      className="absolute -bottom-1 left-1/2 h-0.5 bg-gradient-to-r from-transparent via-purple-300 to-transparent"
+                      initial={{ width: 0, x: "-50%" }}
+                      animate={{ width: "80%", x: "-40%" }}
+                      transition={{ delay: 0.9 + index * 0.1, duration: 0.8 }}
+                    />
+                  </motion.h4>
                 </motion.div>
               ))}
             </div>
