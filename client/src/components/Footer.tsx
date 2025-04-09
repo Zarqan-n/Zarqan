@@ -18,19 +18,20 @@ export default function Footer() {
             <div className="inline-block p-6 bg-white/20 backdrop-blur-md rounded-full mb-4">
               <span className="text-4xl font-montserrat font-bold gradient-text">Zarqan</span>
             </div>
-            <div className="flex justify-center mt-4 space-x-4">
+            <div className="flex justify-center mt-4 space-x-5">
               {[
-                { icon: "github", href: "https://github.com" },
-                { icon: "linkedin", href: "https://linkedin.com" },
-                { icon: "twitter", href: "https://twitter.com" },
-                { icon: "dribbble", href: "https://dribbble.com" }
+                { icon: "github", href: "https://github.com", color: "bg-[#333333]/90" },
+                { icon: "linkedin-in", href: "https://linkedin.com", color: "bg-[#0077b5]/90" },
+                { icon: "twitter", href: "https://twitter.com", color: "bg-[#1da1f2]/90" },
+                { icon: "instagram", href: "https://instagram.com", color: "bg-gradient-to-br from-[#405de6] via-[#e1306c] to-[#ffdc80]/90" },
+                { icon: "behance", href: "https://behance.net", color: "bg-[#1769ff]/90" }
               ].map((social, index) => (
                 <motion.a 
                   key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 flex items-center justify-center bg-white/30 hover:bg-white/40 text-white rounded-full transition-all"
+                  className={`w-12 h-12 flex items-center justify-center ${social.color} hover:saturate-150 text-white rounded-full transition-all shadow-lg border border-white/20`}
                   whileHover={{ y: -5, scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -51,10 +52,28 @@ export default function Footer() {
             transition={{ duration: 0.6 }}
             className="text-center md:text-left"
           >
-            <h4 className="font-montserrat font-bold text-white text-xl mb-4">About Me</h4>
+            <h4 className="font-montserrat font-bold text-white text-xl mb-4 flex items-center md:justify-start justify-center">
+              <span className="bg-gradient-to-r from-purple-500 to-indigo-500 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                <i className="fas fa-info text-white"></i>
+              </span>
+              About Me
+            </h4>
             <p className="text-white/80 leading-relaxed">
               Crafting exceptional digital experiences that blend creativity with functionality. Always exploring new technologies to create immersive web applications.
             </p>
+            <div className="mt-4 pt-2 md:text-left text-center">
+              <motion.a 
+                href="#about"
+                className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors"
+                whileHover={{ x: 5 }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Learn more about me <i className="fas fa-arrow-right text-xs"></i>
+              </motion.a>
+            </div>
           </motion.div>
           
           {/* Navigation links */}
@@ -65,19 +84,24 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-center"
           >
-            <h4 className="font-montserrat font-bold text-white text-xl mb-4">Quick Links</h4>
+            <h4 className="font-montserrat font-bold text-white text-xl mb-4 flex items-center justify-center">
+              <span className="bg-gradient-to-r from-indigo-500 to-purple-500 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                <i className="fas fa-link text-white"></i>
+              </span>
+              Quick Links
+            </h4>
             <div className="flex flex-wrap justify-center gap-4">
               {[
-                { name: "Home", href: "#hero" },
-                { name: "About", href: "#about" },
-                { name: "Skills", href: "#skills" },
-                { name: "Projects", href: "#projects" },
-                { name: "Contact", href: "#contact" }
+                { name: "Home", href: "#hero", icon: "fa-home" },
+                { name: "About", href: "#about", icon: "fa-user" },
+                { name: "Skills", href: "#skills", icon: "fa-code" },
+                { name: "Projects", href: "#projects", icon: "fa-briefcase" },
+                { name: "Contact", href: "#contact", icon: "fa-envelope" }
               ].map((item, index) => (
                 <motion.a 
                   key={index}
                   href={item.href}
-                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all inline-block"
+                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all inline-flex items-center gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={(e) => {
@@ -85,6 +109,7 @@ export default function Footer() {
                     document.getElementById(item.href.substring(1))?.scrollIntoView({ behavior: 'smooth' });
                   }}
                 >
+                  <i className={`fas ${item.icon} text-xs`}></i>
                   {item.name}
                 </motion.a>
               ))}
@@ -99,13 +124,30 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center md:text-right"
           >
-            <h4 className="font-montserrat font-bold text-white text-xl mb-4">Get In Touch</h4>
-            <div className="space-y-3">
-              <p className="text-white/80">
-                <i className="fas fa-envelope mr-2"></i> hello@zarqan.dev
+            <h4 className="font-montserrat font-bold text-white text-xl mb-4 flex items-center md:justify-end justify-center">
+              <span className="bg-gradient-to-r from-violet-500 to-fuchsia-500 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                <i className="fas fa-headset text-white"></i>
+              </span>
+              Get In Touch
+            </h4>
+            <div className="space-y-4">
+              <p className="text-white/80 flex items-center justify-end">
+                <span className="bg-purple-500/50 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                  <i className="fas fa-envelope text-white"></i>
+                </span>
+                <span>hello@zarqan.dev</span>
               </p>
-              <p className="text-white/80">
-                <i className="fas fa-map-marker-alt mr-2"></i> San Francisco, California
+              <p className="text-white/80 flex items-center justify-end">
+                <span className="bg-indigo-500/50 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                  <i className="fas fa-map-marker-alt text-white"></i>
+                </span>
+                <span>San Francisco, California</span>
+              </p>
+              <p className="text-white/80 flex items-center justify-end">
+                <span className="bg-violet-500/50 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                  <i className="fas fa-phone text-white"></i>
+                </span>
+                <span>+1 (555) 123-4567</span>
               </p>
             </div>
           </motion.div>
@@ -119,12 +161,18 @@ export default function Footer() {
           viewport={{ once: true }}
           transition={{ delay: 0.8 }}
         >
-          <p className="text-white text-sm">
-            &copy; {currentYear} Zarqan. All rights reserved.
-          </p>
+          <div className="flex items-center">
+            <span className="bg-white/10 h-8 w-8 rounded-full flex items-center justify-center mr-3">
+              <i className="far fa-copyright text-white text-xs"></i>
+            </span>
+            <p className="text-white text-sm">
+              {currentYear} Zarqan. All rights reserved.
+            </p>
+          </div>
           
           <p className="text-white text-sm mt-4 md:mt-0 flex items-center">
-            Designed with <i className="fas fa-heart text-red-400 mx-2"></i> by Zarqan
+            <i className="fas fa-code text-purple-300 mr-2"></i>
+            Designed with <i className="fas fa-heart text-red-400 mx-2 animate-pulse"></i> by Zarqan
           </p>
         </motion.div>
       </div>
