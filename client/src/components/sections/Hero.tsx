@@ -264,22 +264,21 @@ export default function Hero() {
       </div>
       
       <motion.div 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 1.5 }}
+        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >
-        <motion.a 
-          href="#about"
-          className="text-white dark:text-white hover:text-purple-300 dark:hover:text-purple-300 transition-colors bg-white/10 backdrop-blur-sm p-3 rounded-full"
-          whileHover={{ scale: 1.2, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
-          onClick={(e) => {
-            e.preventDefault();
+        <motion.button 
+          className="text-white dark:text-white hover:text-purple-300 dark:hover:text-purple-300 transition-all bg-white/10 hover:bg-white/20 backdrop-blur-sm p-4 rounded-full shadow-lg"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => {
             document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
           }}
           aria-label="Scroll to About section"
         >
-          <i className="fas fa-chevron-down text-2xl"></i>
-        </motion.a>
+          <i className="fas fa-chevron-down text-xl"></i>
+        </motion.button>
       </motion.div>
     </section>
   );
