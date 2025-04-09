@@ -41,7 +41,7 @@ export default function MobileNav() {
   ];
 
   return (
-    <div className="fixed top-6 left-6 z-50 md:hidden">
+    <div className="fixed top-6 right-6 z-50 md:hidden">
       <motion.button 
         id="menu-toggle" 
         className="text-white focus:outline-none"
@@ -63,7 +63,7 @@ export default function MobileNav() {
           >
             <motion.button 
               id="close-menu" 
-              className="absolute top-6 right-6 text-white focus:outline-none"
+              className="absolute top-6 left-6 text-white focus:outline-none"
               onClick={toggleMenu}
               whileTap={{ scale: 0.9 }}
             >
