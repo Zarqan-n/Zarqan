@@ -138,7 +138,7 @@ export default function About() {
                 </motion.div>
                 
                 <motion.div 
-                  className="absolute -right-5 top-1/3 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
+                  className="absolute -right-5 top-1/4 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
                   initial={{ opacity: 0, x: 20 }}
                   animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                   transition={{ delay: 0.6 }}
@@ -150,10 +150,34 @@ export default function About() {
                 </motion.div>
                 
                 <motion.div 
+                  className="absolute -left-5 bottom-1/3 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                  transition={{ delay: 0.65 }}
+                  whileHover={{ scale: 1.1, rotate: -5 }}
+                >
+                  <span className="text-white font-medium flex items-center">
+                    <i className="fab fa-js-square text-purple-300 mr-2 text-xl"></i> JavaScript Ninja
+                  </span>
+                </motion.div>
+                
+                <motion.div 
+                  className="absolute -right-5 bottom-1/3 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                  transition={{ delay: 0.7 }}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                >
+                  <span className="text-white font-medium flex items-center">
+                    <i className="fas fa-mobile-alt text-purple-300 mr-2 text-lg"></i> Responsive Design
+                  </span>
+                </motion.div>
+                
+                <motion.div 
                   className="absolute -bottom-5 left-1/4 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.7 }}
+                  transition={{ delay: 0.75 }}
                   whileHover={{ scale: 1.1, rotate: -5 }}
                 >
                   <span className="text-white font-medium flex items-center">
