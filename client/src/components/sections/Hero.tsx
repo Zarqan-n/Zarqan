@@ -137,9 +137,12 @@ export default function Hero() {
           </motion.p>
           
           <motion.h1 
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
+            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 flex items-center justify-center md:justify-start"
             variants={itemVariants}
           >
+            <div className="mr-4 bg-white/30 w-16 h-16 rounded-lg flex items-center justify-center backdrop-blur-sm border border-white/30 shadow-lg">
+              <span className="text-4xl text-purple-500 font-bold">Z</span>
+            </div>
             <span className="gradient-text">Zarqan</span>
           </motion.h1>
           

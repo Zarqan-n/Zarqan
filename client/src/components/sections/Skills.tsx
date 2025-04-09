@@ -86,7 +86,7 @@ export default function Skills() {
                 >
                   <div className="flex justify-between items-center mb-2">
                     <span className="font-medium text-white">{skill.name}</span>
-                    <span className="text-sm text-purple-300">
+                    <span className="text-sm text-white">
                       <AnimatedCounter 
                         end={skill.percentage} 
                         suffix="%" 
@@ -94,9 +94,9 @@ export default function Skills() {
                       />
                     </span>
                   </div>
-                  <div className="h-2 bg-white/20 backdrop-blur-sm rounded-full overflow-hidden">
+                  <div className="h-2 bg-white/40 backdrop-blur-sm rounded-full overflow-hidden">
                     <motion.div 
-                      className="h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full"
+                      className="h-full bg-gradient-to-r from-white to-purple-300 rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: animated ? `${skill.percentage}%` : 0 }}
                       transition={{ duration: 1.5, delay: 0.4 + index * 0.1, ease: "easeOut" }}

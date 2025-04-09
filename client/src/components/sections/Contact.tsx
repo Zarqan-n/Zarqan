@@ -75,14 +75,14 @@ export default function Contact() {
           transition={{ type: "spring", stiffness: 100, damping: 15 }}
         >
           <div className="inline-block mb-6">
-            <span className="text-sm font-medium text-primary-600 dark:text-secondary-400 py-1 px-3 bg-primary-600/10 dark:bg-secondary-400/10 rounded-full">GET IN TOUCH</span>
+            <span className="text-sm font-medium text-white py-1 px-4 bg-white/20 backdrop-blur-sm rounded-full border border-white/20">GET IN TOUCH</span>
           </div>
           
-          <h2 className="text-4xl font-montserrat font-bold mb-4 text-gray-800 dark:text-white">
+          <h2 className="text-4xl font-montserrat font-bold mb-4 text-white">
             Let's Start a <span className="gradient-text">Conversation</span>
           </h2>
           
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-white/80 max-w-2xl mx-auto">
             Have a project in mind or want to explore possibilities? I'm always open to discussing new opportunities and challenges.
           </p>
         </motion.div>
@@ -194,9 +194,9 @@ export default function Contact() {
             animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.4 }}
           >
-            <h3 className="text-2xl font-montserrat font-bold mb-6 text-gray-800 dark:text-white">Let's Connect</h3>
+            <h3 className="text-2xl font-montserrat font-bold mb-6 text-white">Let's Connect</h3>
             
-            <p className="text-gray-600 dark:text-gray-400 mb-8">
+            <p className="text-white/80 mb-8">
               Feel free to reach out through any of these channels. I'm always eager to collaborate on exciting projects or just have a chat about technology and design.
             </p>
             
@@ -206,11 +206,11 @@ export default function Contact() {
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
-                <div className="bg-primary-600/10 dark:bg-secondary-400/10 w-12 h-12 rounded-full flex items-center justify-center mr-4 shrink-0">
-                  <i className="fas fa-envelope text-primary-600 dark:text-secondary-400"></i>
+                <div className="bg-white/30 w-12 h-12 rounded-full flex items-center justify-center mr-4 shrink-0">
+                  <i className="fas fa-envelope text-white"></i>
                 </div>
                 <div>
-                  <h4 className="font-montserrat font-bold text-gray-800 dark:text-white mb-1">Email</h4>
+                  <h4 className="font-montserrat font-bold text-white mb-1">Email</h4>
                   <a href="mailto:hello@zarqan.dev" className="text-purple-300 hover:underline">
                     hello@zarqan.dev
                   </a>
@@ -222,12 +222,12 @@ export default function Contact() {
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
-                <div className="bg-primary-600/10 dark:bg-secondary-400/10 w-12 h-12 rounded-full flex items-center justify-center mr-4 shrink-0">
-                  <i className="fas fa-map-marker-alt text-primary-600 dark:text-secondary-400"></i>
+                <div className="bg-white/30 w-12 h-12 rounded-full flex items-center justify-center mr-4 shrink-0">
+                  <i className="fas fa-map-marker-alt text-white"></i>
                 </div>
                 <div>
-                  <h4 className="font-montserrat font-bold text-gray-800 dark:text-white mb-1">Location</h4>
-                  <p className="text-gray-600 dark:text-gray-400">San Francisco, California</p>
+                  <h4 className="font-montserrat font-bold text-white mb-1">Location</h4>
+                  <p className="text-white/80">San Francisco, California</p>
                 </div>
               </motion.div>
               
@@ -236,11 +236,11 @@ export default function Contact() {
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
-                <div className="bg-primary-600/10 dark:bg-secondary-400/10 w-12 h-12 rounded-full flex items-center justify-center mr-4 shrink-0">
-                  <i className="fas fa-share-alt text-primary-600 dark:text-secondary-400"></i>
+                <div className="bg-white/30 w-12 h-12 rounded-full flex items-center justify-center mr-4 shrink-0">
+                  <i className="fas fa-share-alt text-white"></i>
                 </div>
                 <div>
-                  <h4 className="font-montserrat font-bold text-gray-800 dark:text-white mb-1">Social Media</h4>
+                  <h4 className="font-montserrat font-bold text-white mb-1">Social Media</h4>
                   <div className="flex space-x-4 mt-2">
                     {[
                       { icon: "github", url: "https://github.com" },
@@ -253,7 +253,7 @@ export default function Contact() {
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-secondary-400 transition-colors"
+                        className="text-white/80 hover:text-purple-300 transition-colors"
                         whileHover={{ y: -5 }}
                         whileTap={{ y: 0 }}
                       >
@@ -266,17 +266,17 @@ export default function Contact() {
             </div>
             
             <motion.div 
-              className="mt-10 p-6 bg-white dark:bg-dark-900 rounded-xl shadow-md"
+              className="mt-10 p-6 bg-white/30 backdrop-blur-sm rounded-xl shadow-md"
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.6 }}
               whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
             >
-              <h4 className="font-montserrat font-bold text-gray-800 dark:text-white mb-3">Availability</h4>
-              <p className="text-gray-600 dark:text-gray-400 mb-3">
+              <h4 className="font-montserrat font-bold text-white mb-3">Availability</h4>
+              <p className="text-white/80 mb-3">
                 Currently open to new projects and collaborations starting:
               </p>
-              <p className="text-primary-600 dark:text-secondary-400 font-medium">November 2023</p>
+              <p className="text-purple-300 font-medium">November 2023</p>
             </motion.div>
           </motion.div>
         </div>
