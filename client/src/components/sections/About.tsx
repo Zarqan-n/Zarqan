@@ -81,7 +81,7 @@ export default function About() {
           {stats.map((stat, index) => (
             <motion.div 
               key={index}
-              className="card bg-white/10 backdrop-blur-sm p-5 rounded-xl text-center"
+              className="card bg-white/20 backdrop-blur-sm p-5 rounded-xl text-center"
               whileHover={{ y: -8 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
             >
@@ -126,7 +126,7 @@ export default function About() {
                 
                 {/* Skill badges */}
                 <motion.div 
-                  className="absolute -left-5 top-10 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/20 shadow-lg"
+                  className="absolute -left-5 top-10 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
                   initial={{ opacity: 0, x: -20 }}
                   animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                   transition={{ delay: 0.5 }}
@@ -138,7 +138,7 @@ export default function About() {
                 </motion.div>
                 
                 <motion.div 
-                  className="absolute -right-5 top-1/3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/20 shadow-lg"
+                  className="absolute -right-5 top-1/3 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
                   initial={{ opacity: 0, x: 20 }}
                   animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                   transition={{ delay: 0.6 }}
@@ -150,7 +150,7 @@ export default function About() {
                 </motion.div>
                 
                 <motion.div 
-                  className="absolute -bottom-5 left-1/4 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/20 shadow-lg"
+                  className="absolute -bottom-5 left-1/4 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ delay: 0.7 }}
@@ -182,7 +182,7 @@ export default function About() {
                   key={tab.id}
                   className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
                     activeTab === tab.id 
-                      ? 'bg-white/20 backdrop-blur-sm text-white shadow-md border border-white/20' 
+                      ? 'bg-white/30 backdrop-blur-sm text-white shadow-md border border-white/40' 
                       : 'text-white/70 hover:text-white'
                   }`}
                   onClick={() => setActiveTab(tab.id)}
@@ -195,7 +195,7 @@ export default function About() {
             </div>
             
             {/* Tab content */}
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+            <div className="bg-white/20 backdrop-blur-sm p-8 rounded-2xl border border-white/30">
               {/* Journey Tab */}
               {activeTab === 'journey' && (
                 <motion.div
@@ -210,7 +210,7 @@ export default function About() {
                     {experiences.map((exp, index) => (
                       <motion.div 
                         key={index}
-                        className="relative pl-8 pb-8 border-l-2 border-white/20 last:border-l-0 last:pb-0"
+                        className="relative pl-8 pb-8 border-l-2 border-white/40 last:border-l-0 last:pb-0"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
@@ -294,7 +294,7 @@ export default function About() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
                       >
-                        <div className="bg-purple-500/30 p-3 rounded-xl mr-4">
+                        <div className="bg-white/30 p-3 rounded-xl mr-4">
                           <i className={`${value.icon} text-purple-300`}></i>
                         </div>
                         <div>
