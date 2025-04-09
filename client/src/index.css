@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,5 +12,105 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    scroll-behavior: smooth;
   }
+
+  .dark {
+    --gradient-start: rgba(109, 40, 217, 0.7);
+    --gradient-end: rgba(139, 92, 246, 0.8);
+  }
+
+  .light {
+    --gradient-start: rgba(124, 58, 237, 0.7);
+    --gradient-end: rgba(79, 70, 229, 0.8);
+  }
+}
+
+/* Custom Gradients and Effects */
+.gradient-text {
+  @apply font-bold;
+  background: linear-gradient(90deg, #8a3aff 0%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+}
+
+.text-typing {
+  @apply font-semibold;
+}
+
+/* Card & section styling */
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px 0 rgba(138, 58, 255, 0.3); }
+  50% { box-shadow: 0 0 25px 5px rgba(138, 58, 255, 0.5); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Dark mode enhancements */
+.dark .gradient-text {
+  background: linear-gradient(90deg, #9333ea 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Layout elements */
+.section-with-angled-bg {
+  position: relative;
+}
+
+.section-with-angled-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(138, 58, 255, 0.05) 0%, rgba(79, 70, 229, 0.1) 100%);
+  transform: skewY(-3deg);
+  transform-origin: top left;
+  z-index: -1;
+}
+
+/* Dark mode angled background */
+.dark .section-with-angled-bg::before {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(59, 130, 246, 0.15) 100%);
 }

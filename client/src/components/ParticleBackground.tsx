@@ -13,7 +13,9 @@ type Particle = {
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
-  const [particlesState, setParticlesState] = useState<Particle[]>([]);
+  const [particles, setParticles] = useState<Particle[]>([]);
+  const animationFrameIdRef = useRef<number>();
+  const particlesRef = useRef<Particle[]>([]);
   
   // Create particles on component mount
   useEffect(() => {
@@ -23,23 +25,24 @@ export default function ParticleBackground() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
-    const particleCount = Math.min(window.innerWidth / 10, 100);
-    const particles: Particle[] = [];
+    const particleCount = Math.min(window.innerWidth / 8, 150); // Increased particle count
+    const initialParticles: Particle[] = [];
     
     for (let i = 0; i < particleCount; i++) {
-      particles.push({
+      initialParticles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 2 + 1,
+        radius: Math.random() * 3 + 1, // Larger particles
         color: theme === "dark" 
-          ? `rgba(45, 212, 191, ${Math.random() * 0.2})` 
-          : `rgba(108, 99, 255, ${Math.random() * 0.2})`,
-        speed: Math.random() * 0.5 + 0.2,
+          ? `rgba(45, 212, 191, ${Math.random() * 0.3})` // More opacity for dark theme
+          : `rgba(138, 58, 255, ${Math.random() * 0.3})`, // More vibrant purple color
+        speed: Math.random() * 0.7 + 0.3, // Faster particles
         direction: Math.random() * Math.PI * 2
       });
     }
     
-    setParticlesState(particles);
+    setParticles(initialParticles);
+    particlesRef.current = initialParticles;
     
     // Handle window resize
     const handleResize = () => {
@@ -53,33 +56,38 @@ export default function ParticleBackground() {
     
     return () => {
       window.removeEventListener('resize', handleResize);
+      if (animationFrameIdRef.current) {
+        window.cancelAnimationFrame(animationFrameIdRef.current);
+      }
     };
   }, []);
 
   // Animation loop
   useEffect(() => {
-    if (!canvasRef.current || particlesState.length === 0) return;
+    if (!canvasRef.current || particles.length === 0) return;
     
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    
-    let animationFrameId: number;
     
     const render = () => {
       if (!ctx || !canvas) return;
       
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      const particles = [...particlesState];
+      const currentParticles = [...particlesRef.current];
       const isDark = theme === "dark";
       
       // Draw and update particles
-      particles.forEach((particle, i) => {
-        // Update color based on theme
-        particle.color = isDark 
-          ? particle.color.replace('rgba(108, 99, 255,', 'rgba(45, 212, 191,')
-          : particle.color.replace('rgba(45, 212, 191,', 'rgba(108, 99, 255,');
+      for (let i = 0; i < currentParticles.length; i++) {
+        const particle = currentParticles[i];
+        
+        // Update color based on theme (only update color format, not create new colors each frame)
+        if (isDark && particle.color.includes('rgba(138, 58, 255,')) {
+          particle.color = particle.color.replace('rgba(138, 58, 255,', 'rgba(45, 212, 191,');
+        } else if (!isDark && particle.color.includes('rgba(45, 212, 191,')) {
+          particle.color = particle.color.replace('rgba(45, 212, 191,', 'rgba(138, 58, 255,');
+        }
         
         // Draw particle
         ctx.beginPath();
@@ -98,42 +106,44 @@ export default function ParticleBackground() {
         if (particle.y > canvas.height) particle.y = 0;
         
         // Update particle in the array
-        particles[i] = particle;
-      });
+        currentParticles[i] = particle;
+      }
       
       // Draw connections between nearby particles
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
+      for (let i = 0; i < currentParticles.length; i++) {
+        for (let j = i + 1; j < currentParticles.length; j++) {
+          const dx = currentParticles[i].x - currentParticles[j].x;
+          const dy = currentParticles[i].y - currentParticles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 100) {
+          if (distance < 120) { // Increased connection distance
             ctx.beginPath();
             ctx.strokeStyle = isDark
-              ? `rgba(45, 212, 191, ${0.1 * (1 - distance / 100)})`
-              : `rgba(108, 99, 255, ${0.1 * (1 - distance / 100)})`;
+              ? `rgba(45, 212, 191, ${0.15 * (1 - distance / 120)})` // More visible lines
+              : `rgba(138, 58, 255, ${0.15 * (1 - distance / 120)})`;
             ctx.lineWidth = 1;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.moveTo(currentParticles[i].x, currentParticles[i].y);
+            ctx.lineTo(currentParticles[j].x, currentParticles[j].y);
             ctx.stroke();
           }
         }
       }
       
-      // Update state
-      setParticlesState(particles);
+      // Store the updated particles in the ref (avoids state updates in animation loop)
+      particlesRef.current = currentParticles;
       
       // Continue animation loop
-      animationFrameId = window.requestAnimationFrame(render);
+      animationFrameIdRef.current = window.requestAnimationFrame(render);
     };
     
     render();
     
     return () => {
-      window.cancelAnimationFrame(animationFrameId);
+      if (animationFrameIdRef.current) {
+        window.cancelAnimationFrame(animationFrameIdRef.current);
+      }
     };
-  }, [particlesState, theme]);
+  }, [particles, theme]); // Only re-run when particles array or theme changes
 
   return (
     <canvas
