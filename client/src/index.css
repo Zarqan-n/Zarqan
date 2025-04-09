@@ -8,13 +8,16 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
 
-  body {
+  html, body {
     @apply font-sans antialiased;
     scroll-behavior: smooth;
     color: #f8fafc;
     background: linear-gradient(135deg, #6933b5 0%, #9063ed 100%);
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   :root {

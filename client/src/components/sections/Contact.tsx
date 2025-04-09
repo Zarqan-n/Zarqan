@@ -89,78 +89,82 @@ export default function Contact() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <motion.div 
-            className="bg-white dark:bg-dark-900 p-8 rounded-xl shadow-md"
+            className="bg-white/20 backdrop-blur-sm p-8 rounded-xl shadow-md border border-white/30"
             initial={{ opacity: 0, x: -30 }}
             animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
           >
-            <h3 className="text-2xl font-montserrat font-bold mb-6 text-gray-800 dark:text-white">Send Me a Message</h3>
+            <h3 className="text-2xl font-montserrat font-bold mb-6 text-white">Send Me a Message</h3>
             
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="name" className="block text-sm font-medium text-white mb-1">
                     Your Name
                   </label>
                   <input
                     {...form.register("name")}
                     type="text"
                     id="name"
-                    className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-dark-800 border border-gray-200 dark:border-dark-700 focus:outline-none focus:ring-2 focus:ring-primary-600 dark:focus:ring-secondary-400 text-gray-800 dark:text-white transition"
+                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-white/50 transition"
+                    placeholder="John Doe"
                   />
                   {form.formState.errors.name && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p className="text-red-300 text-sm mt-1">
                       {form.formState.errors.name.message}
                     </p>
                   )}
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
                     Email Address
                   </label>
                   <input
                     {...form.register("email")}
                     type="email"
                     id="email"
-                    className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-dark-800 border border-gray-200 dark:border-dark-700 focus:outline-none focus:ring-2 focus:ring-primary-600 dark:focus:ring-secondary-400 text-gray-800 dark:text-white transition"
+                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-white/50 transition"
+                    placeholder="john@example.com"
                   />
                   {form.formState.errors.email && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p className="text-red-300 text-sm mt-1">
                       {form.formState.errors.email.message}
                     </p>
                   )}
                 </div>
                 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="subject" className="block text-sm font-medium text-white mb-1">
                     Subject
                   </label>
                   <input
                     {...form.register("subject")}
                     type="text"
                     id="subject"
-                    className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-dark-800 border border-gray-200 dark:border-dark-700 focus:outline-none focus:ring-2 focus:ring-primary-600 dark:focus:ring-secondary-400 text-gray-800 dark:text-white transition"
+                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-white/50 transition"
+                    placeholder="Project Inquiry"
                   />
                   {form.formState.errors.subject && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p className="text-red-300 text-sm mt-1">
                       {form.formState.errors.subject.message}
                     </p>
                   )}
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="message" className="block text-sm font-medium text-white mb-1">
                     Your Message
                   </label>
                   <textarea
                     {...form.register("message")}
                     id="message"
                     rows={4}
-                    className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-dark-800 border border-gray-200 dark:border-dark-700 focus:outline-none focus:ring-2 focus:ring-primary-600 dark:focus:ring-secondary-400 text-gray-800 dark:text-white transition resize-none"
+                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-white/50 transition resize-none"
+                    placeholder="Hello, I'd like to discuss a project..."
                   />
                   {form.formState.errors.message && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p className="text-red-300 text-sm mt-1">
                       {form.formState.errors.message.message}
                     </p>
                   )}
@@ -169,21 +173,23 @@ export default function Contact() {
                 <motion.button
                   type="submit"
                   disabled={mutation.isPending}
-                  className="w-full py-3 px-6 bg-primary-600 hover:bg-primary-700 dark:bg-secondary-500 dark:hover:bg-secondary-600 text-white dark:text-dark-900 font-medium rounded-lg transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 dark:focus:ring-secondary-400 disabled:opacity-70"
-                  whileHover={{ scale: 1.02 }}
+                  className="w-full py-3 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-purple-500 disabled:opacity-70 border border-white/20"
+                  whileHover={{ scale: 1.02, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  {mutation.isPending ? (
-                    <>
-                      <i className="fas fa-spinner fa-spin mr-2"></i>
-                      <span>Sending...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Send Message</span>
-                      <i className="fas fa-paper-plane ml-2"></i>
-                    </>
-                  )}
+                  <div className="flex items-center justify-center">
+                    {mutation.isPending ? (
+                      <>
+                        <i className="fas fa-spinner fa-spin mr-2"></i>
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <i className="fas fa-paper-plane ml-2"></i>
+                      </>
+                    )}
+                  </div>
                 </motion.button>
               </form>
             </Form>
