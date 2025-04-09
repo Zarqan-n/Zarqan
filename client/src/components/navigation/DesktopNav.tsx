@@ -35,7 +35,7 @@ export default function DesktopNav() {
         </motion.a>
         
         <div className="flex space-x-8">
-          {['hero', 'about', 'skills', 'projects', 'recent-projects', 'contact'].map((section) => (
+          {['hero', 'about', 'skills', 'projects', 'contact'].map((section) => (
             <motion.a
               key={section}
               href={`#${section}`}
@@ -47,11 +47,7 @@ export default function DesktopNav() {
                 document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              {
-                section === 'hero' ? 'Home' : 
-                section === 'recent-projects' ? 'Recent Work' : 
-                section.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
-              }
+              {section.charAt(0).toUpperCase() + section.slice(1) === 'Hero' ? 'Home' : section.charAt(0).toUpperCase() + section.slice(1)}
             </motion.a>
           ))}
         </div>

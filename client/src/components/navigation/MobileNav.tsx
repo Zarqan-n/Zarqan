@@ -37,7 +37,6 @@ export default function MobileNav() {
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
-    { name: "Recent Work", href: "#recent-projects" },
     { name: "Contact", href: "#contact" }
   ];
 
