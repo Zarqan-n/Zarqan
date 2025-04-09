@@ -3,8 +3,6 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Skill, Tool } from "@/types";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
-import { RotatingSkillCubes } from "@/components/3d/InteractiveScene";
-import SkillsVisualization from "@/components/3d/SkillsVisualization";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Skills() {
@@ -160,35 +158,10 @@ export default function Skills() {
           </motion.div>
         </div>
         
-        {/* 3D Skills Visualization */}
-        {isVisible && use3D && (
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.6 }}
-            className="mt-20"
-          >
-            <div className="text-center mb-6">
-              <h3 className="text-2xl font-montserrat font-bold text-white mb-3">
-                Interactive Skills Visualization
-              </h3>
-              <p className="text-white/80 max-w-2xl mx-auto mb-6">
-                Explore my skills in an interactive 3D environment. Click on any skill sphere to see more details.
-              </p>
-            </div>
-            
-            <Suspense fallback={
-              <div className="w-full h-[300px] flex items-center justify-center">
-                <p className="text-white/80">Loading 3D visualization...</p>
-              </div>
-            }>
-              <SkillsVisualization skills={visualSkills} />
-            </Suspense>
-          </motion.div>
-        )}
+        {/* 3D Skills Visualization (disabled) */}
         
-        {/* Rotating Skill Cubes - Simpler 3D visualization that works on more devices */}
-        {isVisible && !use3D && (
+        {/* Core Technologies Section - Standard Version */}
+        {isVisible && (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -204,13 +177,23 @@ export default function Skills() {
               </p>
             </div>
             
-            <Suspense fallback={
-              <div className="w-full h-[200px] flex items-center justify-center">
-                <p className="text-white/80">Loading visualization...</p>
-              </div>
-            }>
-              <RotatingSkillCubes />
-            </Suspense>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+              {visualSkills.slice(0, 8).map((skill, index) => (
+                <motion.div 
+                  key={index}
+                  className="bg-white/10 backdrop-blur-sm rounded-lg p-4 flex flex-col items-center border border-white/20"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + index * 0.1 }}
+                  whileHover={{ y: -5, scale: 1.05 }}
+                >
+                  <div className="w-16 h-16 flex items-center justify-center mb-3 bg-gradient-to-br from-white/20 to-purple-500/30 rounded-full">
+                    <span className="text-white font-bold text-xl">{skill.percentage}%</span>
+                  </div>
+                  <h4 className="font-medium text-white text-center">{skill.name}</h4>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         )}
       </div>

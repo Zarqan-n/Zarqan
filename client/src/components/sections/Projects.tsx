@@ -1,9 +1,8 @@
-import { useRef, useState, useEffect, Suspense } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Project } from "@/types";
-import ProjectGallery3D, { ProjectGallery3DSimple } from "@/components/3d/ProjectGallery3D";
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -128,166 +127,99 @@ export default function Projects() {
             ))}
           </motion.div>
           
-          {/* View Toggle: 3D Gallery vs Regular */}
-          {use3D && (
-            <motion.div
-              className="flex justify-center mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 0.3 }}
-            >
-              <div className="bg-white/10 backdrop-blur-sm p-1 rounded-full border border-white/20">
-                <button
-                  className={`py-2 px-4 rounded-full transition ${
-                    !showGallery 
-                      ? "bg-white/20 text-white font-medium" 
-                      : "text-white/70 hover:text-white"
-                  }`}
-                  onClick={() => setShowGallery(false)}
-                >
-                  <i className="fas fa-th-large mr-2"></i>
-                  Grid View
-                </button>
-                <button
-                  className={`py-2 px-4 rounded-full transition ${
-                    showGallery 
-                      ? "bg-white/20 text-white font-medium" 
-                      : "text-white/70 hover:text-white"
-                  }`}
-                  onClick={() => setShowGallery(true)}
-                >
-                  <i className="fas fa-cube mr-2"></i>
-                  3D Gallery
-                </button>
-              </div>
-            </motion.div>
-          )}
+          {/* View Toggle: 3D Gallery vs Regular (disabled) */}
         </motion.div>
         
-        {/* Conditional rendering between regular grid view and 3D gallery */}
-        {!showGallery ? (
-          <LayoutGroup>
-            <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-              layout
-            >
-              <AnimatePresence>
-                {filteredProjects.map(project => (
-                  <motion.div
-                    key={project.id}
-                    className="project-card group bg-white/20 backdrop-blur-sm rounded-xl overflow-hidden shadow-md hover:shadow-xl border border-white/30 transition-all"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 30 }}
-                    transition={{ type: "spring", stiffness: 100, damping: 15 }}
-                    layout
-                    whileHover={{ y: -10 }}
-                  >
-                    <div className="relative overflow-hidden">
-                      <motion.img 
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-64 object-cover"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.5 }}
-                      />
+        {/* Regular grid view */}
+        <LayoutGroup>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            layout
+          >
+            <AnimatePresence>
+              {filteredProjects.map(project => (
+                <motion.div
+                  key={project.id}
+                  className="project-card group bg-white/20 backdrop-blur-sm rounded-xl overflow-hidden shadow-md hover:shadow-xl border border-white/30 transition-all"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 30 }}
+                  transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                  layout
+                  whileHover={{ y: -10 }}
+                >
+                  <div className="relative overflow-hidden">
+                    <motion.img 
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-64 object-cover"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
+                    />
+                    
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-r from-purple-600/80 to-indigo-600/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      {project.links.demo && (
+                        <motion.a 
+                          href={project.links.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-white w-12 h-12 rounded-full flex items-center justify-center mx-2 hover:bg-purple-100 text-purple-600 transition-all"
+                          whileHover={{ y: -5, scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <i className="fas fa-external-link-alt text-lg"></i>
+                        </motion.a>
+                      )}
                       
-                      <motion.div 
-                        className="absolute inset-0 bg-gradient-to-r from-purple-600/80 to-indigo-600/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                        initial={{ opacity: 0 }}
-                        whileHover={{ opacity: 1 }}
-                      >
-                        {project.links.demo && (
-                          <motion.a 
-                            href={project.links.demo}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-white w-12 h-12 rounded-full flex items-center justify-center mx-2 hover:bg-purple-100 text-purple-600 transition-all"
-                            whileHover={{ y: -5, scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            <i className="fas fa-external-link-alt text-lg"></i>
-                          </motion.a>
-                        )}
-                        
-                        {project.links.github && (
-                          <motion.a 
-                            href={project.links.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-white w-12 h-12 rounded-full flex items-center justify-center mx-2 hover:bg-purple-100 text-purple-600 transition-all"
-                            whileHover={{ y: -5, scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            <i className="fab fa-github text-lg"></i>
-                          </motion.a>
-                        )}
-                      </motion.div>
+                      {project.links.github && (
+                        <motion.a 
+                          href={project.links.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-white w-12 h-12 rounded-full flex items-center justify-center mx-2 hover:bg-purple-100 text-purple-600 transition-all"
+                          whileHover={{ y: -5, scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <i className="fab fa-github text-lg"></i>
+                        </motion.a>
+                      )}
+                    </motion.div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="flex justify-between items-center mb-3">
+                      <h3 className="font-montserrat font-bold text-xl text-white">{project.title}</h3>
+                      <span className="text-xs font-medium text-white py-1 px-2 bg-white/20 rounded-full">
+                        {filters.find(f => f.id === project.category)?.label}
+                      </span>
                     </div>
                     
-                    <div className="p-6">
-                      <div className="flex justify-between items-center mb-3">
-                        <h3 className="font-montserrat font-bold text-xl text-white">{project.title}</h3>
-                        <span className="text-xs font-medium text-white py-1 px-2 bg-white/20 rounded-full">
-                          {filters.find(f => f.id === project.category)?.label}
+                    <p className="text-white/80 mb-4">
+                      {project.description}
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag, index) => (
+                        <span 
+                          key={index}
+                          className="text-xs py-1 px-2 bg-white/10 text-white rounded-full border border-white/10"
+                        >
+                          {tag}
                         </span>
-                      </div>
-                      
-                      <p className="text-white/80 mb-4">
-                        {project.description}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag, index) => (
-                          <span 
-                            key={index}
-                            className="text-xs py-1 px-2 bg-white/10 text-white rounded-full border border-white/10"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                      ))}
                     </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </motion.div>
-          </LayoutGroup>
-        ) : (
-          // 3D Project Gallery View
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="relative">
-              <Suspense fallback={
-                <div className="w-full h-[400px] flex items-center justify-center">
-                  <div className="text-white text-center">
-                    <div className="inline-block mb-3">
-                      <i className="fas fa-spinner fa-spin text-3xl"></i>
-                    </div>
-                    <p>Loading 3D Gallery...</p>
                   </div>
-                </div>
-              }>
-                {isMobile ? (
-                  <ProjectGallery3DSimple projects={filteredProjects} />
-                ) : (
-                  <ProjectGallery3D projects={filteredProjects} />
-                )}
-              </Suspense>
-              
-              <div className="text-center mt-4">
-                <p className="text-white/70 text-sm">
-                  <i className="fas fa-mouse mr-2"></i>
-                  Drag to rotate and explore the 3D gallery
-                </p>
-              </div>
-            </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </motion.div>
-        )}
+        </LayoutGroup>
+
+        {/* 3D Project Gallery View (disabled) */}
         
         <motion.div 
           className="mt-12 text-center"
