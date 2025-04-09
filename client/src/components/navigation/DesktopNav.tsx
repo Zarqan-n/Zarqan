@@ -14,7 +14,7 @@ export default function DesktopNav() {
 
   return (
     <motion.nav 
-      className="fixed top-0 left-0 w-full bg-purple-900/80 backdrop-blur-md z-40 transition-all duration-300 hidden md:block"
+      className="fixed top-0 left-0 w-full bg-purple-600/70 backdrop-blur-md z-40 transition-all duration-300 hidden md:block"
       animate={{
         height: isScrolled ? 70 : 80,
         boxShadow: isScrolled ? "0 4px 15px -1px rgba(91, 33, 182, 0.3)" : "none"

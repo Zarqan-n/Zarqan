@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Skill, Tool } from "@/types";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
 export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -54,14 +55,14 @@ export default function Skills() {
           transition={{ type: "spring", stiffness: 100, damping: 15 }}
         >
           <div className="inline-block mb-6">
-            <span className="text-sm font-medium text-primary-600 dark:text-secondary-400 py-1 px-3 bg-primary-600/10 dark:bg-secondary-400/10 rounded-full">MY EXPERTISE</span>
+            <span className="text-sm font-medium text-white py-1 px-4 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">MY EXPERTISE</span>
           </div>
           
-          <h2 className="text-4xl font-montserrat font-bold mb-4 text-gray-800 dark:text-white">
+          <h2 className="text-4xl font-montserrat font-bold mb-4 text-white">
             Technical <span className="gradient-text">Proficiency</span>
           </h2>
           
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-white/80 max-w-2xl mx-auto">
             I continually expand my skill set to stay at the forefront of development technologies, focusing on creating performant, accessible, and visually stunning applications.
           </p>
         </motion.div>
@@ -72,7 +73,7 @@ export default function Skills() {
             animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
           >
-            <h3 className="text-2xl font-montserrat font-bold mb-8 text-gray-800 dark:text-white">Frontend Development</h3>
+            <h3 className="text-2xl font-montserrat font-bold mb-8 text-white">Frontend Development</h3>
             
             <div className="space-y-6">
               {frontendSkills.map((skill, index) => (
@@ -84,12 +85,18 @@ export default function Skills() {
                   transition={{ delay: 0.3 + index * 0.1 }}
                 >
                   <div className="flex justify-between items-center mb-2">
-                    <span className="font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
-                    <span className="text-sm text-primary-600 dark:text-secondary-400">{skill.percentage}%</span>
+                    <span className="font-medium text-white">{skill.name}</span>
+                    <span className="text-sm text-purple-300">
+                      <AnimatedCounter 
+                        end={skill.percentage} 
+                        suffix="%" 
+                        delay={0.2 + index * 0.1} 
+                      />
+                    </span>
                   </div>
-                  <div className="h-2 bg-gray-200 dark:bg-dark-800 rounded-full overflow-hidden">
+                  <div className="h-2 bg-white/20 backdrop-blur-sm rounded-full overflow-hidden">
                     <motion.div 
-                      className="h-full bg-primary-600 dark:bg-secondary-400 rounded-full"
+                      className="h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: animated ? `${skill.percentage}%` : 0 }}
                       transition={{ duration: 1.5, delay: 0.4 + index * 0.1, ease: "easeOut" }}
@@ -105,23 +112,23 @@ export default function Skills() {
             animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.4 }}
           >
-            <h3 className="text-2xl font-montserrat font-bold mb-8 text-gray-800 dark:text-white">Creative Toolkit</h3>
+            <h3 className="text-2xl font-montserrat font-bold mb-8 text-white">Creative Toolkit</h3>
             
             <div className="grid grid-cols-2 gap-6">
               {creativeTools.map((tool, index) => (
                 <motion.div 
                   key={index}
-                  className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow"
+                  className="card bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-md hover:shadow-xl transition-all"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ delay: 0.5 + index * 0.1 }}
                   whileHover={{ y: -8, transition: { type: "spring", stiffness: 300, damping: 20 } }}
                 >
-                  <div className="text-primary-600 dark:text-secondary-400 mb-3">
+                  <div className="text-purple-300 mb-3">
                     <i className={`${tool.icon} text-4xl`}></i>
                   </div>
-                  <h4 className="font-montserrat font-bold text-gray-800 dark:text-white mb-1">{tool.name}</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{tool.category}</p>
+                  <h4 className="font-montserrat font-bold text-white mb-1">{tool.name}</h4>
+                  <p className="text-sm text-white/70">{tool.category}</p>
                 </motion.div>
               ))}
             </div>
