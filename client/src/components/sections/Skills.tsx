@@ -119,7 +119,7 @@ export default function Skills() {
                   </div>
                   <div className="h-2 bg-white/40 backdrop-blur-sm rounded-full overflow-hidden">
                     <motion.div 
-                      className="h-full bg-gradient-to-r from-white to-purple-300 rounded-full"
+                      className="h-full bg-gradient-to-r from-white to-white rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: animated ? `${skill.percentage}%` : 0 }}
                       transition={{ duration: 1.5, delay: 0.4 + index * 0.1, ease: "easeOut" }}

@@ -2,31 +2,30 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  
+
   return (
     <footer className="bg-gradient-to-r from-purple-800/70 to-indigo-800/70 backdrop-blur-sm pt-16 pb-8">
       <div className="container mx-auto px-6">
         {/* Top section with logo and animated wave decoration */}
         <div className="relative flex justify-center mb-12">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <div className="inline-block p-6 bg-white/20 backdrop-blur-md rounded-full mb-4">
+            <div className="inline-block p-6 py-4 pb-5 cursor-pointer hover:bg-white/20 bg-white/10 backdrop-blur-md rounded-full mb-4">
               <span className="text-4xl font-montserrat font-bold gradient-text">Zarqan</span>
             </div>
             <div className="flex justify-center mt-4 space-x-5">
               {[
-                { icon: "github", href: "https://github.com", color: "bg-[#333333]/90" },
-                { icon: "linkedin-in", href: "https://linkedin.com", color: "bg-[#0077b5]/90" },
-                { icon: "twitter", href: "https://twitter.com", color: "bg-[#1da1f2]/90" },
-                { icon: "instagram", href: "https://instagram.com", color: "bg-gradient-to-br from-[#405de6] via-[#e1306c] to-[#ffdc80]/90" },
-                { icon: "behance", href: "https://behance.net", color: "bg-[#1769ff]/90" }
+                { icon: "github", href: "https://github.com/Zarqan-n", color: "bg-[#333333]/90" },
+                { icon: "telegram", href: "https://t.me/its_zarqu", color: "bg-[#229ED9]/90" },
+                { icon: "whatsapp", href: "https://wa.me/918017927972?text=Hello%2C%20I'm%20interested%20in%20your%20services.", color: "bg-[#25D366]" },
+                { icon: "instagram", href: "https://www.instagram.com/its_zarqu?igsh=MWN1dTBwdzJjaXFhNw==", color: "bg-gradient-to-br from-[#405de6] via-[#e1306c] to-[#ffdc80]/90" }
               ].map((social, index) => (
-                <motion.a 
+                <motion.a
                   key={index}
                   href={social.href}
                   target="_blank"
@@ -41,11 +40,11 @@ export default function Footer() {
             </div>
           </motion.div>
         </div>
-        
+
         {/* Navigation sections */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
           {/* About section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -62,7 +61,7 @@ export default function Footer() {
               Crafting exceptional digital experiences that blend creativity with functionality. Always exploring new technologies to create immersive web applications.
             </p>
             <div className="mt-4 pt-2 md:text-left text-center">
-              <motion.a 
+              <motion.a
                 href="#about"
                 className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors"
                 whileHover={{ x: 5 }}
@@ -75,7 +74,7 @@ export default function Footer() {
               </motion.a>
             </div>
           </motion.div>
-          
+
           {/* Navigation links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -98,7 +97,7 @@ export default function Footer() {
                 { name: "Projects", href: "#projects", icon: "fa-briefcase" },
                 { name: "Contact", href: "#contact", icon: "fa-envelope" }
               ].map((item, index) => (
-                <motion.a 
+                <motion.a
                   key={index}
                   href={item.href}
                   className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all inline-flex items-center gap-2"
@@ -115,7 +114,7 @@ export default function Footer() {
               ))}
             </div>
           </motion.div>
-          
+ 
           {/* Contact info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -135,26 +134,32 @@ export default function Footer() {
                 <span className="bg-purple-500/50 w-8 h-8 rounded-full flex items-center justify-center mr-3">
                   <i className="fas fa-envelope text-white"></i>
                 </span>
-                <span>hello@zarqan.dev</span>
+                <span><a
+                  href="mailto:itszarqan@gmail.com"
+                  className="hover:underline transition-colors"
+                >
+                  itszarqan@gmail.com
+                </a></span>
               </p>
               <p className="text-white/80 flex items-center justify-end">
                 <span className="bg-indigo-500/50 w-8 h-8 rounded-full flex items-center justify-center mr-3">
                   <i className="fas fa-map-marker-alt text-white"></i>
                 </span>
-                <span>San Francisco, California</span>
+                {/* 22.576795589779664, 88.38024026414206 */}
+                <span><a href="https://www.google.com/maps?q=22.576795589779664,88.38024026414206">Narkeldanga, West Bengal</a></span>
               </p>
               <p className="text-white/80 flex items-center justify-end">
                 <span className="bg-violet-500/50 w-8 h-8 rounded-full flex items-center justify-center mr-3">
                   <i className="fas fa-phone text-white"></i>
                 </span>
-                <span>+1 (555) 123-4567</span>
+                <span>+91 8017927972</span>
               </p>
             </div>
           </motion.div>
         </div>
-        
+
         {/* Copyright section with animated border */}
-        <motion.div 
+        <motion.div
           className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -169,7 +174,7 @@ export default function Footer() {
               {currentYear} Zarqan. All rights reserved.
             </p>
           </div>
-          
+
           <p className="text-white text-sm mt-4 md:mt-0 flex items-center">
             <i className="fas fa-code text-purple-300 mr-2"></i>
             Designed with <i className="fas fa-heart text-red-400 mx-2 animate-pulse"></i> by Zarqan

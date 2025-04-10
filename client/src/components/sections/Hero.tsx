@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import my1 from "../../assets/my1.png";
+import my2 from "../../assets/my2.jpg";
+
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -11,7 +14,7 @@ export default function Hero() {
   
   // Typing animation effect
   useEffect(() => {
-    const texts = ["Developer", "Designer", "Creator"];
+    const texts = ["Developer", "Designer", "Creator","Freelancer"];
     let currentIndex = 0;
     let isDeleting = false;
     let charIndex = 0;
@@ -219,7 +222,7 @@ export default function Hero() {
             />
             
             <img 
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" 
+              src={my2}
               alt="Zarqan" 
               className="absolute inset-0 w-full h-full object-cover rounded-2xl border-4 border-white/80 dark:border-purple-900/30 shadow-2xl"
             />

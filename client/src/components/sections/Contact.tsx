@@ -217,8 +217,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-montserrat font-bold text-white mb-1">Email</h4>
-                  <a href="mailto:hello@zarqan.dev" className="text-purple-300 hover:underline">
-                    hello@zarqan.dev
+                  <a href="mailto:itszarqan@gmail.com" className="text-purple-300 hover:underline">
+                    itszarqan@gmail.com
                   </a>
                 </div>
               </motion.div>
@@ -233,7 +233,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-montserrat font-bold text-white mb-1">Location</h4>
-                  <p className="text-white/80">San Francisco, California</p>
+                  <p className="text-white/80">Narkeldanga, West Bengal</p>
                 </div>
               </motion.div>
               
@@ -249,10 +249,10 @@ export default function Contact() {
                   <h4 className="font-montserrat font-bold text-white mb-1">Social Media</h4>
                   <div className="flex space-x-4 mt-2">
                     {[
-                      { icon: "github", url: "https://github.com" },
-                      { icon: "linkedin", url: "https://linkedin.com" },
-                      { icon: "twitter", url: "https://twitter.com" },
-                      { icon: "dribbble", url: "https://dribbble.com" }
+                      { icon: "github", url: "https://github.com/Zarqan-n" },
+                      { icon: "telegram", url: "https://t.me/its_zarqu" },
+                      { icon: "whatsapp", url: "https://wa.me/918017927972?text=Hello%2C%20I'm%20interested%20in%20your%20services." },
+                      { icon: "instagram", url: "https://www.instagram.com/its_zarqu?igsh=MWN1dTBwdzJjaXFhNw==" }
                     ].map((social, index) => (
                       <motion.a 
                         key={index}
@@ -282,7 +282,7 @@ export default function Contact() {
               <p className="text-white/80 mb-3">
                 Currently open to new projects and collaborations starting:
               </p>
-              <p className="text-purple-300 font-medium">November 2023</p>
+              <p className="text-purple-200 font-medium">November 2024</p>
             </motion.div>
           </motion.div>
         </div>

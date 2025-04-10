@@ -4,6 +4,7 @@ import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Project } from "@/types";
 import ProjectShowcase from "@/components/interactive/ProjectShowcase";
+import project1 from "../../assets/Screenshot 2025-04-10 170305.png";
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -18,14 +19,14 @@ export default function Projects() {
   const projects: Project[] = [
     {
       id: 1,
-      title: "Immersive E-commerce",
-      description: "A next-generation shopping platform with 3D product visualizations and AR try-on features.",
+      title: "Freelantix",
+      description: "A next-generation Freelancing platform with product visualizations and  try-on features.",
       category: "web",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      tags: ["React", "Three.js", "Tailwind CSS"],
+      image: project1,
+      tags: ["React", "Node js", "Tailwind CSS"],
       links: {
-        demo: "https://example.com/ecommerce",
-        github: "https://github.com/example/ecommerce"
+        demo: "https://freelantix.netlify.app/",
+        github: "https://github.com"
       }
     },
     {
