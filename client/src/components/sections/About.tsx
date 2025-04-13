@@ -11,15 +11,15 @@ export default function About() {
   
   const stats = [
     { label: "Years Experience", value: 6, suffix: "+", prefix: "" },
-    { label: "Projects Completed", value: 85, suffix: "", prefix: "" },
-    { label: "Happy Clients", value: 32, suffix: "", prefix: "" },
-    { label: "Cups of Coffee", value: 1342, suffix: "", prefix: "" },
+    { label: "Projects Completed", value: 12, suffix: "", prefix: "" },
+    { label: "Happy Clients", value: 5, suffix: "", prefix: "" },
+    { label: "Cups of Coffee", value: 342, suffix: "", prefix: "" },
   ];
   
   const experiences = [
     { year: "2023", role: "Senior Frontend Developer", company: "Innovatech Solutions", description: "Lead developer on multiple high-profile web applications utilizing React, Next.js and modern frontend technologies." },
     { year: "2021", role: "UI/UX Developer", company: "Digital Craftsmen", description: "Developed interactive web experiences with a focus on animation and user engagement." },
-    { year: "2019", role: "Web Developer", company: "CodeArt Studios", description: "Built responsive websites and applications for various clients across multiple industries." },
+    { year: "2019", role: "jr Web Developer", company: "CodeArt Studios", description: "Built responsive websites and applications for various clients across multiple industries." },
   ];
   
   return (
@@ -126,7 +126,7 @@ export default function About() {
                 
                 {/* Skill badges */}
                 <motion.div 
-                  className="absolute -left-5 top-10 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
+                  className="absolute left-14 top-10 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
                   initial={{ opacity: 0, x: -20 }}
                   animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                   transition={{ delay: 0.5 }}
@@ -138,7 +138,7 @@ export default function About() {
                 </motion.div>
                 
                 <motion.div 
-                  className="absolute -right-5 top-1/4 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
+                  className="absolute right-20 top-1/4 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
                   initial={{ opacity: 0, x: 20 }}
                   animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                   transition={{ delay: 0.6 }}
@@ -150,19 +150,19 @@ export default function About() {
                 </motion.div>
                 
                 <motion.div 
-                  className="absolute -left-5 bottom-1/3 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
+                  className="absolute left-5 bottom-1/4 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
                   initial={{ opacity: 0, x: -20 }}
                   animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                   transition={{ delay: 0.65 }}
                   whileHover={{ scale: 1.1, rotate: -5 }}
                 >
                   <span className="text-white font-medium flex items-center">
-                    <i className="fab fa-js-square text-purple-300 mr-2 text-xl"></i> JavaScript Ninja
+                    <i className="fab fa-js-square text-purple-300 mr-2 text-xl"></i> JavaScript
                   </span>
                 </motion.div>
                 
                 <motion.div 
-                  className="absolute -right-5 bottom-1/3 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
+                  className="absolute right-1 bottom-1/3 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
                   initial={{ opacity: 0, x: 20 }}
                   animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                   transition={{ delay: 0.7 }}
@@ -174,7 +174,7 @@ export default function About() {
                 </motion.div>
                 
                 <motion.div 
-                  className="absolute -bottom-5 left-1/4 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
+                  className="absolute bottom-5 left-1/3 bg-white/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 shadow-lg"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ delay: 0.75 }}

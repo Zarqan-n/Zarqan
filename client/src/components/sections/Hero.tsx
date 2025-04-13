@@ -14,7 +14,7 @@ export default function Hero() {
   
   // Typing animation effect
   useEffect(() => {
-    const texts = ["Developer", "Designer", "Creator","Freelancer"];
+    const texts = ["Creator","Developer","Freelancer","Designer"];
     let currentIndex = 0;
     let isDeleting = false;
     let charIndex = 0;

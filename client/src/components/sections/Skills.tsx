@@ -14,20 +14,20 @@ export default function Skills() {
   
   // Frontend skills data
   const frontendSkills: Skill[] = [
-    { name: "React.js / Next.js", percentage: 95 },
-    { name: "JavaScript / TypeScript", percentage: 90 },
-    { name: "Tailwind CSS / SCSS", percentage: 85 },
+    { name: "React.js / Vite", percentage: 95 },
+    { name: "JavaScript", percentage: 90 },
+    { name: "Tailwind CSS", percentage: 85 },
     { name: "HTML5 / CSS3", percentage: 95 }
   ];
   
   // Skills for 3D visualization
   const visualSkills: Skill[] = [
-    { name: "React", percentage: 95 },
-    { name: "TypeScript", percentage: 90 },
-    { name: "Three.js", percentage: 82 },
+    { name: "CSS", percentage: 95 },
+    { name: "Javascript", percentage: 90 },
+    { name: "React", percentage: 82 },
     { name: "Tailwind CSS", percentage: 88 },
     { name: "Node.js", percentage: 80 },
-    { name: "WebGL", percentage: 75 },
+    { name: "Express.js", percentage: 75 },
     { name: "UI/UX Design", percentage: 85 },
     { name: "Animation", percentage: 92 }
   ];
