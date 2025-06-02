@@ -14,10 +14,10 @@ export default function Skills() {
   
   // Frontend skills data
   const frontendSkills: Skill[] = [
-    { name: "React.js / Vite", percentage: 95 },
-    { name: "JavaScript", percentage: 90 },
+    { name: "React.js", percentage: 90 },
+    { name: "JavaScript", percentage: 80 },
     { name: "Tailwind CSS", percentage: 85 },
-    { name: "HTML5 / CSS3", percentage: 95 }
+    { name: "Framer Motion", percentage: 75 }
   ];
   
   // Skills for 3D visualization
@@ -34,9 +34,9 @@ export default function Skills() {
   
   // Creative tools data
   const creativeTools: Tool[] = [
-    { name: "Figma", icon: "fab fa-figma", category: "UI/UX Design" },
-    { name: "GSAP", icon: "fab fa-js", category: "Animation Library" },
-    { name: "Three.js", icon: "fas fa-cube", category: "3D Visualizations" },
+    { name: "React", icon: "fab fa-react", category: "Component Building" },
+    { name: "Javascript", icon: "fab fa-js", category: "Logic" },
+    { name: "Tailwind CSS", icon: "fas fa-wind", category: "Creativity" },
     { name: "Framer Motion", icon: "fas fa-photo-video", category: "React Animation" }
   ];
   

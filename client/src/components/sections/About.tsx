@@ -10,7 +10,7 @@ export default function About() {
   const [activeTab, setActiveTab] = useState('journey');
   
   const stats = [
-    { label: "Years Experience", value: 6, suffix: "+", prefix: "" },
+    { label: "Years Experience", value: 3, suffix: "+", prefix: "" },
     { label: "Projects Completed", value: 12, suffix: "", prefix: "" },
     { label: "Happy Clients", value: 5, suffix: "", prefix: "" },
     { label: "Cups of Coffee", value: 342, suffix: "", prefix: "" },
